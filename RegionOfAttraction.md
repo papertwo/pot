@@ -18,6 +18,8 @@
 
 论文中i.e.的意思是换句话说，也就是说
 
+虽然吸引域是个非常小，非常冷门的研究方向，但是，从小的做起来，能学到很多理论方法，逐渐向更大的领域拓展
+
 # 通过绘制相图寻找吸引域
 
 ![image-20240223144529092](C:\Users\冲浪的胡辣汤\AppData\Roaming\Typora\typora-user-images\image-20240223144529092.png)
@@ -182,18 +184,77 @@ Hopfield网络可以用于联想记忆，因此又称**联想记忆网络**。
 
 
 
+# 双线性矩阵不等式约束（BMI constraint）
+
+==**矩阵不等式**==
+
+![image-20240318192622973](C:\Users\冲浪的胡辣汤\AppData\Roaming\Typora\typora-user-images\image-20240318192622973.png)
+
+**双线性约束**：特点是约束条件中的变量以二次型的形式出现，但每个变量只出现在一个线性项中。换句话说，双线性约束允许变量以乘积的形式出现，但不允许它们出现在更高阶的项中。
+
+**其实就是混合二次，如果固定其中一个变量，那么对另一个来说就是线性，所以称之为双线性，bilinear**![image-20240318193737101](C:\Users\冲浪的胡辣汤\AppData\Roaming\Typora\typora-user-images\image-20240318193737101.png)
+
+BMI约束可以通过Schur补引理转化为一个线性矩阵不等式（LMI），Schur补引理是一个关于矩阵不等式的重要结果
+
+# 优化问题中的
+
+## 凸函数 
+
+凸优化中==局部最优解==就是==全局最优解==
+
+在优化问题中，判断目标函数是否为凸函数是至关重要的，因为凸函数的局部最小值也是全局最小值，这使得我们可以使用各种凸优化算法来有效地找到最优解。![image-20240318200706884](C:\Users\冲浪的胡辣汤\AppData\Roaming\Typora\typora-user-images\image-20240318200706884.png)
+
+## 松弛
+
+将硬约束转化为软约束的技术，例如在整数规划中，弛意味着将整数约束放宽为实数约束。
+
+通过松弛，我们可以更容易地找到原始问题的可行解，甚至是最优解。然而，松弛可能会产生非整数的解，因此我们需要进一步的步骤来确保最终解满足所有的整数要求。
+
+## 分支定界
+
+分支定界是一种求解整数规划问题的策略
+
+分支：从当前的子问题开始，分为两个子问题，，每个子问题包含一个新的约束。
+
+定界：对于每个子问题，计算一个界限，这个界限表示在满足子问题约束的情况下，目标函数可能达到的最大或最小值。    ==这个界限用于剪枝，即排除那些不可能比当前已知最优解更好的子问题。==
 
 
 
 
 
+# 吸引域文献管理：
 
+F. Camilli, L. Grune, and F. Wirth, “A generalization of Zubov’s method to perturbed systems,” SIAM J. Control Optim., vol. 40, no. 2, pp. 496–515, 2001.
 
+~~~
+一个祖博夫相关的概述性的描述，针对不确定系统【generalization】
+~~~
 
+A. Paice and F. Wirth, “Robustness analysis of domains of attraction of nonlinear systems,” in Proc. Math. Theory Networks and Systems, Padova, Italy, 1998, pp. 353–356.
 
+~~~
+时变扰动下的鲁棒吸引域，并给出迭代算法，渐进给出吸引域
+~~~
 
+G. Chesi, “Estimating the domain of attraction of uncertain poynomial systems,” Automatica, vol. 40, pp. 1981–1986, 2004.
 
+~~~
+寻找给定lyapunov下能表征吸引域的最大水平子集；会被证明是ROA的不变子集
+~~~
 
+[20] A. Hassibi, J. How, and S. Boyd, “A path-path following method for solving BMI problems in control,” in Proc. Amer. Control Conf., San Diego, CA, 1999, pp. 1385–1389.
+[21] Z. Jarvis-Wloszek, R. Feeley, W. Tan, K. Sun, and A. Packard, “Control applications of sum of squares programming,” in Positive Polynomials in Control, D. Henrion and A. Garulli, Eds. New York: Springer- Verlag, 2005, pp. 3–22.
+[22] C. Hol, “Structured Controller Synthesis for Mechanical Servo Systems: Algorithms, Relaxations and Optimality Certificates,” Ph.D. dissertation, Technical University of Delft, Delft, The Netherlands, 2006.
+[23] M. Koˇcvara and M. Stingl, PENBMI User’s Guide (Version 2.0) 2005 [Online]. Available: http://www.penopt.com
 
+~~~
+BMI约束（双线性、非凸的SDPs），现有研究关于带BMI的SDP集中于20-23
+~~~
 
-# 文献管理：
+[13] U. Topcu, A. Packard, P. Seiler, and T. Wheeler, “Stability region analysis using simualtions and sum-of-squares programming,” in Proc. Amer. Control Conf., New York, NY, 2007, pp. 6009–6014.
+==[24] U. Topcu, A. Packard, and P. Seiler, “Local stability analysis using simulations and sum-of-squares programming,” Automatica, vol. 44, pp. 2669–2675, 2008.==
+
+~~~
+采用仿真来帮助非凸问题下lyapunov函数的寻找
+~~~
+
